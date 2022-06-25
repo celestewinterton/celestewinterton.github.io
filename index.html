@@ -1,248 +1,457 @@
-<!DOCTYPE HTML>
-<!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Celeste Winterton</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+    Document Title
+    =============================================
+    -->
+    <title>Celeste</title>
+    <!--
+    Favicons
+    =============================================
+    -->
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon.ico">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/images/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!--
+    Stylesheets
+    =============================================
 
-		<!-- Sidebar -->
-			<section id="sidebar">
-				<div class="inner">
-					<nav>
-						<ul>
-							<li><a href="#intro">Welcome</a></li>
-							<li><a href="#one">About</a></li>
-							<li><a href="#two">Skills</a></li>
-							<li><a href="#three">Projects</a></li>
-							<li><a href="#four">Contact</a></li>
-							<!-- <li><ul class="actions">
-								<li><a href="assets/resume-2022.pdf" target="_blank" class="button small primary">Resume</a></li>
-							</ul></li> -->
-						</ul>
-					</nav>
-				</div>
-			</section>
+    -->
+    <!-- Default stylesheets-->
+    <link href="assets/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Template specific stylesheets-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="assets/lib/animate.css/animate.css" rel="stylesheet">
+    <link href="assets/lib/components-font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/lib/et-line-font/et-line-font.css" rel="stylesheet">
+    <link href="assets/lib/flexslider/flexslider.css" rel="stylesheet">
+    <link href="assets/lib/owl.carousel/dist/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css" rel="stylesheet">
+    <link href="assets/lib/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
+    <link href="assets/lib/simple-text-rotator/simpletextrotator.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+    <!-- <link href="assets/css/devicon.min.css" rel="stylesheet"> -->
+    <!-- Main stylesheet and color file-->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link id="color-scheme" href="assets/css/colors/default.css" rel="stylesheet">
+  </head>
+  <body data-spy="scroll" data-target=".onpage-navigation" data-offset="60">
+    <main>
+      <div class="page-loader">
+        <div class="loader">Loading...</div>
+      </div>
+      <nav class="navbar navbar-custom navbar-fixed-top navbar-transparent" role="navigation">
+        <div class="container">
+          <!-- <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="index.html">Celeste</a>
+          </div> -->
+          <nav class="collapse navbar-collapse" id="custom-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown"><a href="#one" data-toggle="dropdown">Home</a></li>
+              <li class="dropdown"><a href="#about" data-toggle="dropdown">About</a></li>
+              <li><a href="#skills" data-toggle="dropdown">Skills</a></li>
+              <li class="dropdown"><a class="dropdown-toggle" href="#projects" data-toggle="dropdown">Projects</a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown"><a href="https://coinblock-trading.herokuapp.com/" target="_blank" data-toggle="dropdown">Coinblock</a></li>
+                  <li class="dropdown"><a href="https://seat-me-guestly.herokuapp.com/" target="_blank" data-toggle="dropdown">Guestly</a></li>
+                  <li class="dropdown"><a href="https://chatter-with-us.herokuapp.com/" target="_blank" data-toggle="dropdown">Chatter</a></li>
+                  <li><a href="documentation.html#contact">Contact Form</a></li>
+                  <li><a href="buttons.html"><i class="fa fa-link fa-sm"></i> Buttons</a></li>
+                  <li><a href="icons.html"><i class="fa fa-star"></i> Icons</a></li>
+                  <li><a href="typography.html"><i class="fa fa-font"></i> Typography</a></li>
+                  <li><a href="404.html">Page 404</a></li>
+                </ul>
+              </li>
+              <li class="dropdown"><a class="dropdown-toggle" href="#contact" data-toggle="dropdown">Contact</a>
+                <ul class="dropdown-menu">
+                  <li class="dropdown"><a href="https://github.com/celestewinterton" target="_blank" data-toggle="dropdown">Github</a></li>
+                  <li class="dropdown"><a href="https://www.linkedin.com/in/celestewinterton/" target="_blank" data-toggle="dropdown">LinkedIn</a></li>
+                  <li class="dropdown"><a href="https://angel.co/u/celeste-winterton" target="_blank" data-toggle="dropdown">Angellist</a></li>
+                  <li class="dropdown"><a href="mailto:celestewinterton@gmail.com" target="_blank" data-toggle="dropdown">Email</a></li>
+                </ul>
+              </li>
+              <!-- <p>Phone: +1 916 960 8192</p> -->
+            </ul>
+          </nav>
+        </div>
+      </nav>
+      <section class="home-section bg-dark-60 portfolio-page-header parallax-bg" id="home" data-background="assets/images/light2.png">
+        <div class="titan-caption">
+          <div class="caption-content">
+            <div class="font-alt mb-30 titan-title-size-1">Hello &amp; welcome, my name is</div>
+            <div class="font-alt mb-40 titan-title-size-4">Celeste Winterton</div>
+            <a class="section-scroll btn btn-border-w btn-round" target="_blank" href="./assets/resume-2022.pdf">Resume</a>
+          </div>
+        </div>
+      </section>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
 
-				<!-- Intro -->
-					<section id="intro" class="wrapper style1 fullscreen fade-up">
-						<div class="inner">
-							<h1>Celeste Winterton</h1>
-							<p>Fullstack software engineer with focus on frontend, a background in finance, <br />and a passion for crypto</p>
-							<ul class="actions">
-								<li><a href="assets/resume-2022.pdf" target="_blank" class="button primary">Resume</a></li>
-							</ul>
-						</div>
-					</section>
+      <section class="module pt-0 pb-0" id="about">
+        <div class="row position-relative m-0">
+          <div class="col-xs-12 col-md-6 side-image" data-background="assets/images/profile0.jpeg"></div>
+          <div class="col-xs-12 col-md-6 col-md-offset-6 side-image-text">
+            <div class="row">
+              <div class="col-sm-12">
+                <h2 class="module-title font-alt align-left">About Me</h2>
+                <div class="module-subtitle font-serif align-left">Fullstack software engineer with focus on frontend, a background in finance,
+                  and a passion for crypto</div>
+                <p>I grew up creative and free-spirited, always making something whether it was out of clay, paint, textiles, or music. At some point, I
+                  tried very hard to "grow out" of that, but I love that in coding, I've found a way to reconnect with my childhood and I can
+                  once again, create beautiful things.
+                </p>
+                <p>My exposure to tech was quite minimal until early adulthood. In highschool another student shared a teaching demo on some basic
+                  HTML and CSS and although I was immediatly intrigued, I didn't have the confidence or support to explore that interest.
+                  What it actually took, was a personal misson and maybe a small existential crisis. Ten years and a finance career later,
+                  I quit my job, and completed a highly selective coding bootcamp.
+                </p>
+                <p>
+                  Ultimatly, what inspired me to make a career change; I didn't feel fullfilled in my work, meanwhile I became obsessed with crypto and
+                  how this technology could change peoples lives. I fell in love with the idea of a more open and inclusive financial system The space
+                  is still nascent, but I wanted to at some point, in some way, be involved in this rare opportunity to make a positive change for the world.
+                </p>
+                <h5 class="widget-title font-alt">Work History</h5>
+                <p><img src="./assets/images/cdiac.png" alt="" class="icon" />Staff Services Analyst, 2017-2019</p>
+                <p><img src="./assets/images/intel" alt="" class="icon" />Senior Financial Analyst, 2019-2022</p>
+                <h5 class="widget-title font-alt">Education</h5>
+                <p><img src="./assets/images/sacstateflame" alt="" class="icon" />CSU Sacramento, Bachelors in Economics, 2014-2018</p>
+                <p><img src="./assets/images/appAcademy.png" alt="" class="icon" />App Academy, Software Engineering Immersive, 2022</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-				<!-- One -->
-				<section id="one" class="wrapper style0 fade-up">
-					<div class="inner">
-						<h2>About Me</h2>
-						<img src="" alt="" />
-						<section>
-							<p></p>
-						</section>
-						<section>
-							<p></p>
-						</section>
-					</div>
-				</section>
 
-				<!-- Two -->
-				<section id="two" class="wrapper style3 fade-up">
-					<div class="inner">
-						<h2>Skills</h2>
-						<div class="features">
-							<section>
-								<p>Javascript</p>
-							</section>
-							<section>
-								<p>React & Redux</p>
-							</section>
-							<section>
-								<p>Redux</p>
-							</section>
-							<section>
-								<p>Node.js</p>
-							</section>
-							<section>
-								<p>Express.js</p>
-							</section>
-							<section>
-								<p>Sequelize</p>
-							</section>
-							<section>
-								<p>Python</p>
-							</section>
-							<section>
-								<p>Flask</p>
-							</section>
-							<section>
-								<p>SQLAlchemy</p>
-							</section>
-							<section>
-								<p>PostgreSQL</p>
-							</section>
-							<section>
-								<p>Heroku</p>
-							</section>
-							<section>
-								<p>SQL</p>
-							</section>
-							<section>
-								<p>PostgreSQL</p>
-							</section>
-							<section>
-								<p>HTML5 & CSS3</p>
-							</section>
-							<section>
-								<p>Git</p>
-							</section>
-						</div>
-						<!-- <ul class="actions">
-							<li><a href="resume.html" class="button">Learn more</a></li>
-						</ul> -->
-					</div>
-				</section>
+      <section class="module" id="skills">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              <h2 class="module-title font-alt">Skills</h2>
+              <div class="module-subtitle font-serif"></div>
+            </div>
+          </div>
+          <div class="row multi-columns-row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <!-- <div class="features-icon"><span class="icon-puzzle"></span></div>
+                <div class="features-icon"><span class="icon-strategy"></span></div>
+                <div class="features-icon"><span class="icon-linkedin"></span></div> -->
+                <!-- <h3 class="features-title font-alt">Javascript</h3> -->
+                <i class="devicon-javascript-plain devicon"></i>
+                <p>Javascript</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-python-plain devicon"></i>
+                <p>Python</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-react-plain devicon"></i>
+                <p>React</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-redux-plain devicon"></i>
+                <p>Redux</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-nodejs-plain devicon"></i>
+                <p>Node.js</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-express-original devicon"></i>
+                <p>Express.js</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-sequelize-plain devicon"></i>
+                <p>Sequelize</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-heroku-plain devicon"></i>
+                <p>Heroku</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-visualstudio-plain devicon"></i>
+                <p>VS Code</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-flask-plain devicon"></i>
+                <p>flask</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-sqlalchemy-plain devicon"></i>
+                <p>SQLAlchemy</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-postgresql-plain devicon"></i>
+                <p>PostgreSQL</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-docker-plain devicon"></i>
+                <p>Docker</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-github-plain devicon"></i>
+                <p>Git</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-heroku-plain devicon"></i>
+                <p>Heroku</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-visualstudio-plain devicon"></i>
+                <p>VS Code</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-figma-plain devicon"></i>
+                <p>Figma</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-html5-plain devicon"></i>
+                <p>HTML</p>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="features-item">
+                <i class="devicon-css3-plain devicon"></i>
+                <p>CSS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-				<!-- Three -->
-					<section id="three" class="wrapper style2 spotlights">
-						<!-- <div class="inner">
-							<h2>Projects</h2>
-						</div> -->
-						<section>
-							<a href="#" class="image"><img src="./images/coinblock.png" alt="" data-position="center center" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>Coinblock</h2>
-									<p>A simulated crypto trading application inspired by Coinbase</p>
-									<ul class="actions">
-										<li><a href="https://github.com/celestewinterton/coinblock" target="_blank" class="button">Github</a></li>
-										<li><a href="https://coinblock-trading.herokuapp.com/" target="_blank" class="button">Live</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
-						<section>
-							<a href="#" class="image"><img src="./images/guestly.png" alt="" data-position="center center" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>Guestly</h2>
-									<p>An events site for wedding planning and RSVPs</p>
-									<ul class="actions">
-										<li><a href="https://github.com/celestewinterton/guestly" target="_blank" class="button">Github</a></li>
-										<li><a href="https://seat-me-guestly.herokuapp.com/" target="_blank" class="button">Live</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
-						<section>
-							<a href="#" class="image"><img src="./images/chatter.png" alt="" data-position="center center" /></a>
-							<div class="content">
-								<div class="inner">
-									<h2>Chatter</h2>
-									<p>A live-chat messaging application clone of Slack</p>
-									<ul class="actions">
-										<li><a href="https://github.com/celestewinterton/chatter" target="_blank" class="button">Github</a></li>
-										<li><a href="https://chatter-with-us.herokuapp.com/" target="_blank" class="button">Live</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
-					</section>
 
-				<!-- Four -->
-					<section id="four" class="wrapper style1 fade-up">
-						<div class="inner">
-							<h2>Get in touch</h2>
-							<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet imperdiet est velit quis lorem.</p>
-							<div class="split style1">
-								<section>
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<label for="name">Name</label>
-												<input type="text" name="name" id="name" />
-											</div>
-											<div class="field half">
-												<label for="email">Email</label>
-												<input type="text" name="email" id="email" />
-											</div>
-											<div class="field">
-												<label for="message">Message</label>
-												<textarea name="message" id="message" rows="5"></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><a href="" class="button submit">Send Message</a></li>
-										</ul>
-									</form>
-								</section>
-								<section>
-									<ul class="contact">
-										<!-- <li>
-											<h3>Address</h3>
-											<span>12345 Somewhere Road #654<br />
-											Nashville, TN 00000-0000<br />
-											USA</span>
-										</li> -->
-										<li>
-											<h3>Email</h3>
-											<a href="mailto:celestewinterton@gmail.com" target="_blank">celestewinterton@gmail.com</a>
-										</li>
-										<li>
-											<h3>Phone</h3>
-											<span>(916) 960-8192</span>
-										</li>
-										<li>
-											<h3>Social</h3>
-											<ul class="icons">
-												<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> -->
-												<!-- <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> -->
-												<li><a href="https://github.com/celestewinterton" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-												<li><a href="https://www.linkedin.com/in/celestewinterton/" target="_blank" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-												<li><a href="https://angel.co/u/celeste-winterton" target="_blank" class="icon brands fa-angellist"><span class="label">Angellist</span></a></li>
-												<li><a href="https://www.instagram.com/celestewinterton/?hl=en" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-											</ul>
-										</li>
-									</ul>
-								</section>
-							</div>
-						</div>
-					</section>
+        <section class="module-small bg-dark">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3 text-center">
+                <h4 class="font-alt mb-20">Let's work together</h4><a class="btn btn-border-w" target="_blank" href="mailto:celestewinterton@gmail.com">Contact Me</a>
+              </div>
+            </div>
+          </div>
+        </section>
 
-			</div>
+        <!-- Projects -->
+        <section class="module" id="projects">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Projects</h2>
+                <!-- <div class="module-subtitle font-serif">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</div> -->
+              </div>
+            </div>
 
-		<!-- Footer -->
-			<footer id="footer" class="wrapper style1-alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>&copy; Celeste Winterton</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</div>
-			</footer>
+            <div class="row multi-columns-row post-columns">
+              <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="post mb-20">
+                  <div class="post-thumbnail"><a href="#"><img src="assets/images/coinblock.gif" alt="Blog-post Thumbnail"/></a></div>
+                  <div class="post-header font-alt">
+                    <h2 class="post-title"><a href="#">Coinblock</a></h2>
+                    <div class="post-meta">By&nbsp;<a href="#">Celeste Winterton</a>&nbsp;| 20 June 2022
+                    </div>
+                  </div>
+                  <div class="post-entry">
+                    <p>A simulated crypto trading application inspired by Coinbase. Coinblock was developed with Javascript, React and Redux
+                      on the frontend, and Python, Flask and SQLAlchemy on the backend with a Postgres Database.</p>
+                  </div>
+                  <!-- <div class="post-more"><a class="more-link" href="#">Read more</a></div> -->
+                  <a href="https://github.com/celestewinterton/coinblock" target="_blank" class="btn btn-border-d btn-round btn-xs">Github</a>
+                  <a href="https://coinblock-trading.herokuapp.com/" target="_blank" class="btn btn-border-d btn-round btn-xs">Live</a>
+                </div>
+              </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+              <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="post mb-20">
+                  <div class="post-thumbnail"><a href="#"><img src="assets/images/guestly.gif" alt="Blog-post Thumbnail"/></a></div>
+                  <div class="post-header font-alt">
+                    <h2 class="post-title"><a href="#">Guestly</a></h2>
+                    <div class="post-meta">By&nbsp;<a href="#">Celeste Winterton</a>&nbsp;| 16 May 2022
+                    </div>
+                  </div>
+                  <div class="post-entry">
+                    <p>An events site for wedding planning and RSVPs. Guestly was developed using Javascript, React and Redux
+                      on the frontend, and Express and Sequelize on the backend with a Postgres Database.
+                    </p>
+                  </div>
+                  <a href="https://github.com/celestewinterton/guestly" target="_blank" class="btn btn-border-d btn-round btn-xs">Github</a>
+                  <a href="https://seat-me-guestly.herokuapp.com/" target="_blank" class="btn btn-border-d btn-round btn-xs">Live</a>
+                </div>
+              </div>
 
-	</body>
+              <div class="col-sm-6 col-md-4 col-lg-4">
+                <div class="post mb-20">
+                  <div class="post-thumbnail"><a href="#"><img src="assets/images/chatter.gif" alt="Blog-post Thumbnail"/></a></div>
+                  <div class="post-header font-alt">
+                    <h2 class="post-title"><a href="#">Chatter</a></h2>
+                    <div class="post-meta">By&nbsp;<a href="#">Celeste Winterton et. al.</a>&nbsp;| 06 June 2022
+                    </div>
+                  </div>
+                  <div class="post-entry">
+                    <p>A live-chat messaging application clone of Slack. Chatter was developed by a team of four engineers. It uses Javascript,
+                      React and Redux on the frontend, and Python, Flask and SQLAlchemy on the backend with a Postgres Database.</p>
+                  </div>
+                  <a href="https://github.com/celestewinterton/chatter" target="_blank" class="btn btn-border-d btn-round btn-xs">Github</a>
+                  <a href="https://chatter-with-us.herokuapp.com/" target="_blank" class="btn btn-border-d btn-round btn-xs">Live</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- <section>
+          <div class="container">
+            <div class="row landing-image-text">
+              <div class="col-sm-6 col-sm-push-6"><img class="center-block" src="assets/images/coinblock-image.png" alt=""></div>
+              <div class="col-sm-6 col-sm-pull-6">
+                <h2 class="font-alt">Keep the conversation going</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Duis aute in voluptate velit esdeserunt mollit anim id est laborum.</p>
+                <ul>
+                  <li>Lorem ipsum dolor sit amet, consectetur</li>
+                  <li>Quis nostrud exercitation ex ea commodo consequat.</li>
+                </ul>
+                <a class="btn btn-border-d btn-circle" href="#">Github</a>
+                <a class="btn btn-border-d btn-circle" href="#">Live</a>
+              </div>
+            </div>
+          </div>
+        </section> -->
+
+
+        <!-- <section class="module" id="contact">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <h4 class="font-alt">Get in touch</h4><br/>
+                <form id="contactForm" role="form" method="post" action="php/contact.php">
+                  <div class="form-group">
+                    <label class="sr-only" for="name">Name</label>
+                    <input class="form-control" type="text" id="name" name="name" placeholder="Your Name*" required="required" data-validation-required-message="Please enter your name."/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only" for="email">Email</label>
+                    <input class="form-control" type="email" id="email" name="email" placeholder="Your Email*" required="required" data-validation-required-message="Please enter your email address."/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <textarea class="form-control" rows="7" id="message" name="message" placeholder="Your Message*" required="required" data-validation-required-message="Please enter your message."></textarea>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="text-center">
+                    <button class="btn btn-block btn-round btn-d" id="cfsubmit" type="submit">Submit</button>
+                  </div>
+                </form>
+                <div class="ajax-response font-alt" id="contactFormResponse"></div>
+              </div>
+              <div class="col-sm-6">
+                <h4 class="font-alt">Additional info</h4><br/>
+                <p>I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend.</p>
+                <hr/>
+                <h4 class="font-alt">Business Hours</h4><br/>
+                <ul class="list-unstyled">
+                  <li>Mo - Fr: 8am to 6pm</li>
+                  <li>Sa, Su: 10am to 2pm</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section> -->
+
+
+        <!-- Footer & Contact -->
+        <!-- <section class="module" id="contact"></section> -->
+        <div class="module-small bg-dark" id="contact">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="widget">
+                  <h5 class="widget-title font-alt">Let's Connect</h5>
+                  <!-- <p>The languages only differ in their grammar, their pronunciation and their most common words.</p> -->
+                  <p>Phone: +1 916 960 8192</p>
+                  <p>Email: <a href="mailto:celestewinterton@gmail.com" target="_blank">celestewinterton@gmail.com</a></p>
+                  <p>Social:
+                    <a href="https://github.com/celestewinterton" target="_blank"><i class="fa fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/celestewinterton/" target="_blank"><i class="fa fa-linkedin"></i></a>
+                    <a href="https://angel.co/u/celeste-winterton" target="_blank"><i class="fa fa-angellist"></i></a>
+                    <a href="https://www.instagram.com/celestewinterton/?hl=en" target="_blank"><i class="fa fa-instagram"></i></a>
+                  </p>
+                  <!-- <div class="col-sm-6">
+                    <div class="footer-social-links"><a href="#"><i class="fa fa-facebook"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-dribbble"></i></a><a href="#"><i class="fa fa-skype"></i></a></div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr class="divider-d">
+        <footer class="footer bg-dark">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="copyright font-alt">&copy; 2022&nbsp;<a href="index.html">Celeste Winterton</a></p>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
+      </div>
+    </main>
+    <!--
+    JavaScripts
+    =============================================
+    -->
+    <script src="assets/lib/jquery/dist/jquery.js"></script>
+    <script src="assets/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/lib/wow/dist/wow.js"></script>
+    <script src="assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js"></script>
+    <script src="assets/lib/isotope/dist/isotope.pkgd.js"></script>
+    <script src="assets/lib/imagesloaded/imagesloaded.pkgd.js"></script>
+    <script src="assets/lib/flexslider/jquery.flexslider.js"></script>
+    <script src="assets/lib/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="assets/lib/smoothscroll.js"></script>
+    <script src="assets/lib/magnific-popup/dist/jquery.magnific-popup.js"></script>
+    <script src="assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
 </html>

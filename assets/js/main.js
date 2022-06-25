@@ -1,190 +1,851 @@
-/*
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+console.log('%c Proudly Crafted with ZiOn.', 'background: #222; color: #bada55');
 
-(function($) {
+/* ---------------------------------------------- /*
+ * Preloader
+ /* ---------------------------------------------- */
+(function(){
+    $(window).on('load', function() {
+        $('.loader').fadeOut();
+        $('.page-loader').delay(350).fadeOut('slow');
+    });
 
-	var	$window = $(window),
-		$body = $('body'),
-		$sidebar = $('#sidebar');
+    $(document).ready(function() {
 
-	// Breakpoints.
-		breakpoints({
-			xlarge:   [ '1281px',  '1680px' ],
-			large:    [ '981px',   '1280px' ],
-			medium:   [ '737px',   '980px'  ],
-			small:    [ '481px',   '736px'  ],
-			xsmall:   [ null,      '480px'  ]
-		});
+        /* ---------------------------------------------- /*
+         * WOW Animation When You Scroll
+         /* ---------------------------------------------- */
 
-	// Hack: Enable IE flexbox workarounds.
-		if (browser.name == 'ie')
-			$body.addClass('is-ie');
+        wow = new WOW({
+            mobile: false
+        });
+        wow.init();
 
-	// Play initial animations on page load.
-		$window.on('load', function() {
-			window.setTimeout(function() {
-				$body.removeClass('is-preload');
-			}, 100);
-		});
 
-	// Forms.
+        /* ---------------------------------------------- /*
+         * Scroll top
+         /* ---------------------------------------------- */
 
-		// Hack: Activate non-input submits.
-			$('form').on('click', '.submit', function(event) {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('.scroll-up').fadeIn();
+            } else {
+                $('.scroll-up').fadeOut();
+            }
+        });
 
-				// Stop propagation, default.
-					event.stopPropagation();
-					event.preventDefault();
+        $('a[href="#totop"]').click(function() {
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
+            return false;
+        });
 
-				// Submit form.
-					$(this).parents('form').submit();
 
-			});
+        /* ---------------------------------------------- /*
+         * Initialization General Scripts for all pages
+         /* ---------------------------------------------- */
 
-	// Sidebar.
-		if ($sidebar.length > 0) {
+        var homeSection = $('.home-section'),
+            navbar      = $('.navbar-custom'),
+            navHeight   = navbar.height(),
+            worksgrid   = $('#works-grid'),
+            width       = Math.max($(window).width(), window.innerWidth),
+            mobileTest  = false;
 
-			var $sidebar_a = $sidebar.find('a');
+        if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            mobileTest = true;
+        }
 
-			$sidebar_a
-				.addClass('scrolly')
-				.on('click', function() {
+        buildHomeSection(homeSection);
+        navbarAnimation(navbar, homeSection, navHeight);
+        navbarSubmenu(width);
+        hoverDropdown(width, mobileTest);
 
-					var $this = $(this);
+        $(window).resize(function() {
+            var width = Math.max($(window).width(), window.innerWidth);
+            buildHomeSection(homeSection);
+            hoverDropdown(width, mobileTest);
+        });
 
-					// External link? Bail.
-						if ($this.attr('href').charAt(0) != '#')
-							return;
+        $(window).scroll(function() {
+            effectsHomeSection(homeSection, this);
+            navbarAnimation(navbar, homeSection, navHeight);
+        });
 
-					// Deactivate all links.
-						$sidebar_a.removeClass('active');
+        /* ---------------------------------------------- /*
+         * Set sections backgrounds
+         /* ---------------------------------------------- */
 
-					// Activate link *and* lock it (so Scrollex doesn't try to activate other links as we're scrolling to this one's section).
-						$this
-							.addClass('active')
-							.addClass('active-locked');
+        var module = $('.home-section, .module, .module-small, .side-image');
+        module.each(function(i) {
+            if ($(this).attr('data-background')) {
+                $(this).css('background-image', 'url(' + $(this).attr('data-background') + ')');
+            }
+        });
 
-				})
-				.each(function() {
+        /* ---------------------------------------------- /*
+         * Home section height
+         /* ---------------------------------------------- */
 
-					var	$this = $(this),
-						id = $this.attr('href'),
-						$section = $(id);
+        function buildHomeSection(homeSection) {
+            if (homeSection.length > 0) {
+                if (homeSection.hasClass('home-full-height')) {
+                    homeSection.height($(window).height());
+                } else {
+                    homeSection.height($(window).height() * 0.85);
+                }
+            }
+        }
 
-					// No section for this link? Bail.
-						if ($section.length < 1)
-							return;
 
-					// Scrollex.
-						$section.scrollex({
-							mode: 'middle',
-							top: '-20vh',
-							bottom: '-20vh',
-							initialize: function() {
+        /* ---------------------------------------------- /*
+         * Home section effects
+         /* ---------------------------------------------- */
 
-								// Deactivate section.
-									$section.addClass('inactive');
+        function effectsHomeSection(homeSection, scrollTopp) {
+            if (homeSection.length > 0) {
+                var homeSHeight = homeSection.height();
+                var topScroll = $(document).scrollTop();
+                if ((homeSection.hasClass('home-parallax')) && ($(scrollTopp).scrollTop() <= homeSHeight)) {
+                    homeSection.css('top', (topScroll * 0.55));
+                }
+                if (homeSection.hasClass('home-fade') && ($(scrollTopp).scrollTop() <= homeSHeight)) {
+                    var caption = $('.caption-content');
+                    caption.css('opacity', (1 - topScroll/homeSection.height() * 1));
+                }
+            }
+        }
 
-							},
-							enter: function() {
+        /* ---------------------------------------------- /*
+         * Intro slider setup
+         /* ---------------------------------------------- */
 
-								// Activate section.
-									$section.removeClass('inactive');
+        if( $('.hero-slider').length > 0 ) {
+            $('.hero-slider').flexslider( {
+                animation: "fade",
+                animationSpeed: 1000,
+                animationLoop: true,
+                prevText: '',
+                nextText: '',
+                before: function(slider) {
+                    $('.titan-caption').fadeOut().animate({top:'-80px'},{queue:false, easing: 'swing', duration: 700});
+                    slider.slides.eq(slider.currentSlide).delay(500);
+                    slider.slides.eq(slider.animatingTo).delay(500);
+                },
+                after: function(slider) {
+                    $('.titan-caption').fadeIn().animate({top:'0'},{queue:false, easing: 'swing', duration: 700});
+                },
+                useCSS: true
+            });
+        }
 
-								// No locked links? Deactivate all links and activate this section's one.
-									if ($sidebar_a.filter('.active-locked').length == 0) {
 
-										$sidebar_a.removeClass('active');
-										$this.addClass('active');
+        /* ---------------------------------------------- /*
+         * Rotate
+         /* ---------------------------------------------- */
 
-									}
+        $(".rotate").textrotator({
+            animation: "dissolve",
+            separator: "|",
+            speed: 3000
+        });
 
-								// Otherwise, if this section's link is the one that's locked, unlock it.
-									else if ($this.hasClass('active-locked'))
-										$this.removeClass('active-locked');
 
-							}
-						});
+        /* ---------------------------------------------- /*
+         * Transparent navbar animation
+         /* ---------------------------------------------- */
 
-				});
+        function navbarAnimation(navbar, homeSection, navHeight) {
+            var topScroll = $(window).scrollTop();
+            if (navbar.length > 0 && homeSection.length > 0) {
+                if(topScroll >= navHeight) {
+                    navbar.removeClass('navbar-transparent');
+                } else {
+                    navbar.addClass('navbar-transparent');
+                }
+            }
+        }
 
-		}
+        /* ---------------------------------------------- /*
+         * Navbar submenu
+         /* ---------------------------------------------- */
 
-	// Scrolly.
-		$('.scrolly').scrolly({
-			speed: 1000,
-			offset: function() {
+        function navbarSubmenu(width) {
+            if (width > 767) {
+                $('.navbar-custom .navbar-nav > li.dropdown').hover(function() {
+                    var MenuLeftOffset  = $('.dropdown-menu', $(this)).offset().left;
+                    var Menu1LevelWidth = $('.dropdown-menu', $(this)).width();
+                    if (width - MenuLeftOffset < Menu1LevelWidth * 2) {
+                        $(this).children('.dropdown-menu').addClass('leftauto');
+                    } else {
+                        $(this).children('.dropdown-menu').removeClass('leftauto');
+                    }
+                    if ($('.dropdown', $(this)).length > 0) {
+                        var Menu2LevelWidth = $('.dropdown-menu', $(this)).width();
+                        if (width - MenuLeftOffset - Menu1LevelWidth < Menu2LevelWidth) {
+                            $(this).children('.dropdown-menu').addClass('left-side');
+                        } else {
+                            $(this).children('.dropdown-menu').removeClass('left-side');
+                        }
+                    }
+                });
+            }
+        }
 
-				// If <=large, >small, and sidebar is present, use its height as the offset.
-					if (breakpoints.active('<=large')
-					&&	!breakpoints.active('<=small')
-					&&	$sidebar.length > 0)
-						return $sidebar.height();
+        /* ---------------------------------------------- /*
+         * Navbar hover dropdown on desctop
+         /* ---------------------------------------------- */
 
-				return 0;
+        function hoverDropdown(width, mobileTest) {
+            if ((width > 767) && (mobileTest !== true)) {
+                $('.navbar-custom .navbar-nav > li.dropdown, .navbar-custom li.dropdown > ul > li.dropdown').removeClass('open');
+                var delay = 0;
+                var setTimeoutConst;
+                $('.navbar-custom .navbar-nav > li.dropdown, .navbar-custom li.dropdown > ul > li.dropdown').hover(function() {
+                        var $this = $(this);
+                        setTimeoutConst = setTimeout(function() {
+                            $this.addClass('open');
+                            $this.find('.dropdown-toggle').addClass('disabled');
+                        }, delay);
+                    },
+                    function() {
+                        clearTimeout(setTimeoutConst);
+                        $(this).removeClass('open');
+                        $(this).find('.dropdown-toggle').removeClass('disabled');
+                    });
+            } else {
+                $('.navbar-custom .navbar-nav > li.dropdown, .navbar-custom li.dropdown > ul > li.dropdown').unbind('mouseenter mouseleave');
+                $('.navbar-custom [data-toggle=dropdown]').not('.binded').addClass('binded').on('click', function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    $(this).parent().siblings().removeClass('open');
+                    $(this).parent().siblings().find('[data-toggle=dropdown]').parent().removeClass('open');
+                    $(this).parent().toggleClass('open');
+                });
+            }
+        }
 
-			}
-		});
+        /* ---------------------------------------------- /*
+         * Navbar collapse on click
+         /* ---------------------------------------------- */
 
-	// Spotlights.
-		$('.spotlights > section')
-			.scrollex({
-				mode: 'middle',
-				top: '-10vh',
-				bottom: '-10vh',
-				initialize: function() {
+        $(document).on('click','.navbar-collapse.in',function(e) {
+            if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
+                $(this).collapse('hide');
+            }
+        });
 
-					// Deactivate section.
-						$(this).addClass('inactive');
 
-				},
-				enter: function() {
+        /* ---------------------------------------------- /*
+         * Video popup, Gallery
+         /* ---------------------------------------------- */
 
-					// Activate section.
-						$(this).removeClass('inactive');
+        $('.video-pop-up').magnificPopup({
+            type: 'iframe'
+        });
 
-				}
-			})
-			.each(function() {
+        $(".gallery-item").magnificPopup({
+            delegate: 'a',
+            type: 'image',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0,1]
+            },
+            image: {
+                titleSrc: 'title',
+                tError: 'The image could not be loaded.'
+            }
+        });
 
-				var	$this = $(this),
-					$image = $this.find('.image'),
-					$img = $image.find('img'),
-					x;
 
-				// Assign image.
-					$image.css('background-image', 'url(' + $img.attr('src') + ')');
+        /* ---------------------------------------------- /*
+         * Portfolio
+         /* ---------------------------------------------- */
 
-				// Set background position.
-					if (x = $img.data('position'))
-						$image.css('background-position', x);
+        var worksgrid   = $('#works-grid'),
+            worksgrid_mode;
 
-				// Hide <img>.
-					$img.hide();
+        if (worksgrid.hasClass('works-grid-masonry')) {
+            worksgrid_mode = 'masonry';
+        } else {
+            worksgrid_mode = 'fitRows';
+        }
 
-			});
+        worksgrid.imagesLoaded(function() {
+            worksgrid.isotope({
+                layoutMode: worksgrid_mode,
+                itemSelector: '.work-item'
+            });
+        });
 
-	// Features.
-		$('.features')
-			.scrollex({
-				mode: 'middle',
-				top: '-20vh',
-				bottom: '-20vh',
-				initialize: function() {
+        $('#filters a').click(function() {
+            $('#filters .current').removeClass('current');
+            $(this).addClass('current');
+            var selector = $(this).attr('data-filter');
 
-					// Deactivate section.
-						$(this).addClass('inactive');
+            worksgrid.isotope({
+                filter: selector,
+                animationOptions: {
+                    duration: 750,
+                    easing: 'linear',
+                    queue: false
+                }
+            });
 
-				},
-				enter: function() {
+            return false;
+        });
 
-					// Activate section.
-						$(this).removeClass('inactive');
 
-				}
-			});
+        /* ---------------------------------------------- /*
+         * Testimonials
+         /* ---------------------------------------------- */
 
+        if ($('.testimonials-slider').length > 0 ) {
+            $('.testimonials-slider').flexslider( {
+                animation: "slide",
+                smoothHeight: true
+            });
+        }
+
+
+        /* ---------------------------------------------- /*
+         * Post Slider
+         /* ---------------------------------------------- */
+
+        if ($('.post-images-slider').length > 0 ) {
+            $('.post-images-slider').flexslider( {
+                animation: "slide",
+                smoothHeight: true,
+            });
+        }
+
+
+        /* ---------------------------------------------- /*
+         * Progress bar animations
+         /* ---------------------------------------------- */
+
+        $('.progress-bar').each(function(i) {
+            $(this).appear(function() {
+                var percent = $(this).attr('aria-valuenow');
+                $(this).animate({'width' : percent + '%'});
+                $(this).find('span').animate({'opacity' : 1}, 900);
+                $(this).find('span').countTo({from: 0, to: percent, speed: 900, refreshInterval: 30});
+            });
+        });
+
+
+        /* ---------------------------------------------- /*
+         * Funfact Count-up
+         /* ---------------------------------------------- */
+
+        $('.count-item').each(function(i) {
+            $(this).appear(function() {
+                var number = $(this).find('.count-to').data('countto');
+                $(this).find('.count-to').countTo({from: 0, to: number, speed: 1200, refreshInterval: 30});
+            });
+        });
+
+
+        /* ---------------------------------------------- /*
+         * Youtube video background
+         /* ---------------------------------------------- */
+
+        $(function(){
+            $(".video-player").mb_YTPlayer();
+        });
+
+        $('#video-play').click(function(event) {
+            event.preventDefault();
+            if ($(this).hasClass('fa-play')) {
+                $('.video-player').playYTP();
+            } else {
+                $('.video-player').pauseYTP();
+            }
+            $(this).toggleClass('fa-play fa-pause');
+            return false;
+        });
+
+        $('#video-volume').click(function(event) {
+            event.preventDefault();
+            if ($(this).hasClass('fa-volume-off')) {
+                $('.video-player').YTPUnmute();
+            } else {
+                $('.video-player').YTPMute();
+            }
+            $(this).toggleClass('fa-volume-off fa-volume-up');
+            return false;
+        });
+
+
+        /* ---------------------------------------------- /*
+         * Owl Carousel
+         /* ---------------------------------------------- */
+
+        $('.owl-carousel').each(function(i) {
+
+            // Check items number
+            if ($(this).data('items') > 0) {
+                items = $(this).data('items');
+            } else {
+                items = 4;
+            }
+
+            // Check pagination true/false
+            if (($(this).data('pagination') > 0) && ($(this).data('pagination') === true)) {
+                pagination = true;
+            } else {
+                pagination = false;
+            }
+
+            // Check navigation true/false
+            if (($(this).data('navigation') > 0) && ($(this).data('navigation') === true)) {
+                navigation = true;
+            } else {
+                navigation = false;
+            }
+
+            // Build carousel
+            $(this).owlCarousel( {
+                navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+                nav: navigation,
+                dots: pagination,
+                loop: true,
+                dotsSpeed: 400,
+                items: items,
+                navSpeed: 300,
+                autoplay: 2000
+            });
+
+        });
+
+
+        /* ---------------------------------------------- /*
+         * Blog masonry
+         /* ---------------------------------------------- */
+
+        $('.post-masonry').imagesLoaded(function() {
+            $('.post-masonry').masonry();
+        });
+
+
+        /* ---------------------------------------------- /*
+         * Scroll Animation
+         /* ---------------------------------------------- */
+
+        $('.section-scroll').bind('click', function(e) {
+            var anchor = $(this);
+            $('html, body').stop().animate({
+                scrollTop: $(anchor.attr('href')).offset().top - 50
+            }, 1000);
+            e.preventDefault();
+        });
+
+        /*===============================================================
+         Working Contact Form
+         ================================================================*/
+
+        $("#contactForm").submit(function (e) {
+
+            e.preventDefault();
+            var $ = jQuery;
+
+            var postData = $(this).serializeArray(),
+                formURL = $(this).attr("action"),
+                $cfResponse = $('#contactFormResponse'),
+                $cfsubmit = $("#cfsubmit"),
+                cfsubmitText = $cfsubmit.text();
+
+            $cfsubmit.text("Sending...");
+
+
+            $.ajax(
+                {
+                    url: formURL,
+                    type: "POST",
+                    data: postData,
+                    success: function (data) {
+                        $cfResponse.html(data);
+                        $cfsubmit.text(cfsubmitText);
+                        $('#contactForm input[name=name]').val('');
+                        $('#contactForm input[name=email]').val('');
+                        $('#contactForm textarea[name=message]').val('');
+                    },
+                    error: function (data) {
+                        alert("Error occurd! Please try again");
+                    }
+                });
+
+            return false;
+
+        });
+
+
+        /*===============================================================
+         Working Request A Call Form
+         ================================================================*/
+
+        $("#requestACall").submit(function (e) {
+
+            e.preventDefault();
+            var $ = jQuery;
+
+            var postData = $(this).serializeArray(),
+                formURL = $(this).attr("action"),
+                $cfResponse = $('#requestFormResponse'),
+                $cfsubmit = $("#racSubmit"),
+                cfsubmitText = $cfsubmit.text();
+
+            $cfsubmit.text("Sending...");
+
+
+            $.ajax(
+                {
+                    url: formURL,
+                    type: "POST",
+                    data: postData,
+                    success: function (data) {
+                        $cfResponse.html(data);
+                        $cfsubmit.text(cfsubmitText);
+                        $('#requestACall input[name=name]').val('');
+                        $('#requestACall input[name=subject]').val('');
+                        $('#requestACall textarea[name=phone]').val('');
+                    },
+                    error: function (data) {
+                        alert("Error occurd! Please try again");
+                    }
+                });
+
+            return false;
+
+        });
+
+
+        /*===============================================================
+         Working Reservation Form
+         ================================================================*/
+
+        $("#reservationForm").submit(function (e) {
+
+            e.preventDefault();
+            var $ = jQuery;
+
+            var postData = $(this).serializeArray(),
+                formURL = $(this).attr("action"),
+                $cfResponse = $('#reservationFormResponse'),
+                $cfsubmit = $("#rfsubmit"),
+                cfsubmitText = $cfsubmit.text();
+
+            $cfsubmit.text("Sending...");
+
+
+            $.ajax(
+                {
+                    url: formURL,
+                    type: "POST",
+                    data: postData,
+                    success: function (data) {
+                        $cfResponse.html(data);
+                        $cfsubmit.text(cfsubmitText);
+                        $('#reservationForm input[name=date]').val('');
+                        $('#reservationForm input[name=time]').val('');
+                        $('#reservationForm textarea[name=people]').val('');
+                        $('#reservationForm textarea[name=email]').val('');
+                    },
+                    error: function (data) {
+                        alert("Error occurd! Please try again");
+                    }
+                });
+
+            return false;
+
+        });
+
+
+        /* ---------------------------------------------- /*
+         * Subscribe form ajax
+         /* ---------------------------------------------- */
+
+        $('#subscription-form').submit(function(e) {
+
+            e.preventDefault();
+            var $form           = $('#subscription-form');
+            var submit          = $('#subscription-form-submit');
+            var ajaxResponse    = $('#subscription-response');
+            var email           = $('input#semail').val();
+
+            $.ajax({
+                type: 'POST',
+                url: 'assets/php/subscribe.php',
+                dataType: 'json',
+                data: {
+                    email: email
+                },
+                cache: false,
+                beforeSend: function(result) {
+                    submit.empty();
+                    submit.append('<i class="fa fa-cog fa-spin"></i> Wait...');
+                },
+                success: function(result) {
+                    if(result.sendstatus == 1) {
+                        ajaxResponse.html(result.message);
+                        $form.fadeOut(500);
+                    } else {
+                        ajaxResponse.html(result.message);
+                    }
+                }
+            });
+
+        });
+
+
+        /* ---------------------------------------------- /*
+         * Google Map
+         /* ---------------------------------------------- */
+
+        if($("#map").length == 0 || typeof google == 'undefined') return;
+
+        // When the window has finished loading create our google map below
+        google.maps.event.addDomListener(window, 'load', init);
+
+        var mkr = new google.maps.LatLng(40.6700, -74.2000);
+        var cntr = (mobileTest) ? mkr : new google.maps.LatLng(40.6700, -73.9400);
+
+        function init() {
+            // Basic options for a simple Google Map
+            // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+            var mapOptions = {
+                // How zoomed in you want the map to start at (always required)
+                zoom: 11,
+                scrollwheel: false,
+                // The latitude and longitude to center the map (always required)
+                center: cntr, // New York
+
+                // How you would like to style the map.
+                // This is where you would paste any style found on Snazzy Maps.
+                styles: [
+                    {
+                        "featureType": "all",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            },
+                            {
+                                "saturation": "-11"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "saturation": "22"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative",
+                        "elementType": "geometry.stroke",
+                        "stylers": [
+                            {
+                                "saturation": "-58"
+                            },
+                            {
+                                "color": "#cfcece"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative",
+                        "elementType": "labels.text",
+                        "stylers": [
+                            {
+                                "color": "#f8f8f8"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#999999"
+                            },
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "administrative.country",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#f9f9f9"
+                            },
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#f2f2f2"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "landscape",
+                        "elementType": "geometry",
+                        "stylers": [
+                            {
+                                "saturation": "-19"
+                            },
+                            {
+                                "lightness": "-2"
+                            },
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "saturation": -100
+                            },
+                            {
+                                "lightness": 45
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "simplified"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "road.arterial",
+                        "elementType": "labels.icon",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "all",
+                        "stylers": [
+                            {
+                                "color": "#d8e1e5"
+                            },
+                            {
+                                "visibility": "on"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "geometry.fill",
+                        "stylers": [
+                            {
+                                "color": "#dedede"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "labels.text",
+                        "stylers": [
+                            {
+                                "color": "#cbcbcb"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "labels.text.fill",
+                        "stylers": [
+                            {
+                                "color": "#9c9c9c"
+                            }
+                        ]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [
+                            {
+                                "visibility": "off"
+                            }
+                        ]
+                    }
+                ]
+            };
+
+            // Get the HTML DOM element that will contain your map
+            // We are using a div with id="map" seen below in the <body>
+            var mapElement = document.getElementById('map');
+
+            // Create the Google Map using our element and options defined above
+            var map = new google.maps.Map(mapElement, mapOptions);
+
+            // Let's also add a marker while we're at it
+            var image = new google.maps.MarkerImage('assets/images/map-icon.png',
+                new google.maps.Size(59, 65),
+                new google.maps.Point(0, 0),
+                new google.maps.Point(24, 42)
+            );
+
+            var marker = new google.maps.Marker({
+                position: mkr,
+                icon: image,
+                title: 'Titan',
+                infoWindow: {
+                    content: '<p><strong>Rival</strong><br/>121 Somewhere Ave, Suite 123<br/>P: (123) 456-7890<br/>Australia</p>'
+                },
+                map: map,
+            });
+        }
+
+    });
 })(jQuery);
+
+

@@ -446,7 +446,7 @@ a,
   margin-bottom: 80px !important;
 }
 
-@media only screen and (max-width: 991px) {
+@media only screen and (max-width: 900px) {
   .mt-sm-0 {
     margin-top: 0 !important;
   }
@@ -2749,7 +2749,7 @@ Google map
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 900px) {
   /* Navbar */
   .navbar-custom {
     letter-spacing: 0;

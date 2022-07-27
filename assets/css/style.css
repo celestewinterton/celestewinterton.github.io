@@ -23,6 +23,11 @@ img {
   font-size: 25px;
 }
 
+.connect-icon {
+  font-size: 20px;
+  padding: 0px 5px;
+}
+
 .icon {
   max-width: 35px;
   max-height: 35px;
@@ -2932,6 +2937,16 @@ Google map
   .works-grid-3 .work-item,
   .works-grid-4 .work-item,
   .works-grid-5 .work-item {
+    width: 100%;
+  }
+}
+
+@keyframes animation-arrow {
+  0% {
+    width: 0;
+  }
+
+  100% {
     width: 100%;
   }
 }

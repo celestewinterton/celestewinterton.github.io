@@ -24,9 +24,10 @@ img {
 }
 
 .connect-icon {
-  font-size: 26px;
-  padding: 0px 5px;
+  font-size: 18px;
+  padding: 0px 8px;
 }
+
 
 .home-connect-icons > .connect-icon {
   /* color: rgba(255, 255, 255, 0.80); */

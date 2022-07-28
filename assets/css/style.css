@@ -24,8 +24,25 @@ img {
 }
 
 .connect-icon {
-  font-size: 20px;
+  font-size: 26px;
   padding: 0px 5px;
+}
+
+.home-connect-icons > .connect-icon {
+  /* color: rgba(255, 255, 255, 0.80); */
+  color: #aaa;
+}
+
+.home-connect-icons {
+  /* padding-top: 20px; */
+  color: rgba(203, 203, 203, 0.711);
+  display: flex;
+  /* justify-content: space-evenly; */
+
+}
+
+.home-connect-icons > .connect-icon:hover {
+  color: #bbb;
 }
 
 .icon {

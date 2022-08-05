@@ -12,10 +12,10 @@ body {
 }
 
 :root {
-  --primary: #0052FF !important;
-  --accent: #0052FF !important;
-  --hover: #0045da !important;
-  --muted: #5e7fc9 !important;
+  --primary: #0D8280 !important;
+  --accent: #14c8c4 !important;
+  --hover: #095b59 !important;
+  --muted: #86c0bf !important;
 }
 
 h1,
